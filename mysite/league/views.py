@@ -9,11 +9,23 @@ from IPython import embed
 def team(request,team_id):
     team = Team.objects.get(id=team_id)
     
-    context={"team": team}
+    #------------------------
+    # Use this to change 'problem' colours
+    colourlist=team.home_colour.split()
+    thecolour=colourlist[0]
+    if thecolour=="White" or thecolour=="Black":
+        thecolour="Grey"
+    elif thecolour=="Light":
+        thecolour="Lightblue"
+    #------------------------
+    
+    context={"team": team, "thecolour":thecolour}
     
     response = render(request,'league/team_detail.html', context )
   
     return response
+
+
 
 def team_list(request):
     
