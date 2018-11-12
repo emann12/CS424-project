@@ -8,6 +8,8 @@ from IPython import embed
 
 from members.forms import MemberForm
 
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -30,7 +32,7 @@ def member_list(request):
     
     return response
 
-# Lets a member update their details
+@login_required
 def member_update(request,member_id):
     member = Member.objects.get(id=member_id)
     if request.method=="POST":
@@ -41,7 +43,7 @@ def member_update(request,member_id):
         else:
             return HttpResponseRedirect('/')
 
-    form = MemberForm()
+    form = MemberForm(instance=member)
     return render(request,'members/member_update.html',{
             'form':form
         })

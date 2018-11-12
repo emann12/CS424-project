@@ -34,3 +34,11 @@ def team_list(request):
     response = render(request,'league/team_list.html', context )
     
     return response
+
+def home(request):
+
+    response = render(request,'league/home.html', {} )
+    
+    return response
+
+
