@@ -35,6 +35,10 @@ def member_list(request):
 @login_required
 def member_update(request,member_id):
     member = Member.objects.get(id=member_id)
+    
+    if member.user!=request.user:
+        return render(request,'members/no_access.html', {} )
+    
     if request.method=="POST":
         form = MemberForm(request.POST, instance=member) # populates the form fields with POST data
         if form.is_valid():
