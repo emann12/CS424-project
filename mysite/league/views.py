@@ -36,8 +36,13 @@ def team_list(request):
     return response
 
 def home(request):
-
-    response = render(request,'league/home.html', {} )
+    context={}
+    if request.user.is_authenticated:
+        name=request.user.username
+        context['name']=name
+    else:
+        context['name']=''
+    response = render(request,'league/home.html', context )
     
     return response
 
