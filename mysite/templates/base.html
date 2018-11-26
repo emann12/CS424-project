@@ -2,44 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<style>
-#nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;      /* bar colour */
-}
 
-#nav li {
-    float: left;
-}
-
-#nav li a {
-    display: block;
-    color: white;              /* text colour */
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-#nav li a:hover {
-    background-color: green;     /* highlight colour */
-}
-    
-#rightside img {            /* display image on right side of page */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 250px;
-    height: auto;
-    float: right;
-    border-radius: 50%;
-    padding: 15px;
-}
-    
-    
-</style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'mycss.css' %}"/>
 </head>
     
     <body>
@@ -49,6 +14,7 @@
                   <li><a href="{%url 'team_list' %}">Team List</a></li>
                   <li><a href="{%url 'member_list' %}">Member List</a></li>
                   <li style= "float: right"><a href="{%url 'logout' %}">Logout</a></li>
+                  <li style="float:right"><a href="{%url 'login' %}?next={%url 'home' %}">Login</a></li>
 
             </ul>
         </div>
